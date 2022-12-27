@@ -1,5 +1,4 @@
 const canvas=document.getElementById("myCanvas");
-canvas.height = window.innerHeight; 
 canvas.width = 200;
 
 const context = canvas.getContext("2d");     // get 2D context of the canvas
@@ -9,7 +8,7 @@ const car = new Car(road.getLaneCenter(1), 100, 30, 50);
 animate();
 
 function animate() {
-    car.update();
+    car.update(road.borders);
     
     canvas.height = window.innerHeight;
     context.save();
