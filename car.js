@@ -11,26 +11,13 @@ class Car {
         this.friction = 0.05;
         this.angle = 0;
 
+        this.sensor = new Sensor(this);   // pass Car to sensor 
         this.controls = new Controls();
-    }
-
-    draw(context) {
-        context.save();
-        context.translate(this.x, this.y);
-        context.rotate(-this.angle);
-        context.beginPath();
-        context.rect(
-            - this.width / 2, 
-            - this.height/2, 
-            this.width, 
-            this.height
-        );
-        context.fill();
-        context.restore();    // to make sure, not to translate and rotate 
     }
 
     update() {
         this.#move();
+        this.sensor.update();   // update sensor
     }
 
     #move() {
@@ -67,5 +54,22 @@ class Car {
 
         this.x -= Math.sin(this.angle) * this.speed;
         this.y -= Math.cos(this.angle) * this.speed;
+    }
+
+    draw(context) {
+        context.save();
+        context.translate(this.x, this.y);
+        context.rotate(-this.angle);
+        context.beginPath();
+        context.rect(
+            - this.width / 2, 
+            - this.height/2, 
+            this.width, 
+            this.height
+        );
+        context.fill();
+        context.restore();    // to make sure not to translate and rotate 
+
+        this.sensor.draw(context);   // draw sensor
     }
 }
