@@ -1,0 +1,9 @@
+body {
+    margin: 0;      /* Remove the margin around the body */
+    background:darkgray;
+    overflow: hidden;
+    text-align: center;
+}
+#myCanvas {
+    background: lightgray;
+}
